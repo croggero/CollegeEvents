@@ -10,4 +10,5 @@ class UniController extends Controller
         $data['unis'] = Level::get()->pluck('name', 'id');
         return view('register', $data);
     }
+    
 }

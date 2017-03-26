@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+function admSelectCheck(obj)
+{
+    console.log(obj);
+    if(obj){
+        admOptionValue = obj.options[obj.selectedIndex].getAttribute('data');
+        console.log(admOptionValue);
+        if(admOptionValue == ''){
+            document.getElementById("superAdminCheck").style.display = "block";
+        }
+        else{
+            document.getElementById("superAdminCheck").style.display = "none";
+        }
+    }
+    else{
+        document.getElementById("superAdminCheck").style.display = "none";
+    }
+}
+</script>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -41,12 +60,19 @@
                         <div class="form-group">
                             <label for="uni" class="col-md-4 control-label">University</label>
                             <div class="col-md-6">
-                                <select id="uni" name="uni" class="form-control" required>
-                                
-                                @foreach ($unis as $uni)
-                                <option value="{{ $uni->id }}">{{ $uni->name }}</option>
+                                <select id="uni" name="uni" class="form-control" onchange="admSelectCheck(this)" required>
+                                <option value="" data-id="" disabled selected> -- Please Select -- </option>
+                                @foreach ($unis as $uni)                 
+                                <option id="admOption" value="{{ $uni->id }}" data="{{ $uni->superadmin_id }}">{{ $uni->name }}</option>
                                 @endforeach
                                 </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="superAdminCheck" style="display:none;">
+                            <label for="permission" class="col-md-4 control-label">Super Admin</label>
+                            <div class="col-md-6">
+                                <input type="checkbox" name="permission" value="3"></input>
                             </div>
                         </div>
 

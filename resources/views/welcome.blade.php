@@ -50,8 +50,9 @@
             }
 
             .links > a {
+                background-color: white;
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 6px 25px;
                 font-size: 12px;
                 font-weight: 600;
                 letter-spacing: .1rem;
@@ -68,22 +69,27 @@
         <div class="flex-center position-ref full-height" style="background-image: url({{url('/images/spiritsplash.jpg')}});background-size: cover;background-position: center;">
             @if (Route::has('login'))
                 <div class="top-right links">
-                    @if (Auth::check())
+                    <!--@if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
                         <a href="{{ url('/register') }}">Register</a>
-                    @endif
+                    @endif-->
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md" style="background-color: white;">
                     College Events
+                    
                 </div>
-
                 <div class="links">
-                    <a href="https://laravel-news.com">News</a>
+                    @if (Auth::check())
+                        <a href="{{ url('/home') }}">Home</a>
+                    @else
+                        <a href="{{ url('/login') }}">Login</a>
+                        <a href="{{ url('/register') }}">Register</a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -22,3 +22,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 Route::get('/joinrso', 'JoinRsoController@index');
 Route::get('/startrso', 'StartRsoController@index');
+Route::post('/rsocreated', 'StartRsoController@create');
+Route::post('/rsojoined', 'JoinRsoController@create');
