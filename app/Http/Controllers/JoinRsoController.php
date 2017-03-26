@@ -30,6 +30,6 @@ class JoinRsoController extends Controller
             'rso_id' => $data['id']
         ));
 
-        return view('rsojoined');
+        return redirect()->route('login');
     }
 }

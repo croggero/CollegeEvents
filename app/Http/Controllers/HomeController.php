@@ -45,8 +45,13 @@ class HomeController extends Controller
                                     WHERE ((user_rsos.user_id)=". $userid .");"));
         return view('home', compact('unis','rsos', 'events'));
     }
-    public function delete() {
+    public function leaveRso() {
 
+        $data = $_POST;
+        $userid = Auth::id();
+        DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
+
+        return redirect()->route('login');
     }
 
 }

@@ -30,6 +30,6 @@ class StartRsoController extends Controller
             'rso_id' => $rso['id'],
         ));
 
-        return view('rsocreated');
+        return redirect()->route('login');
     }
 }

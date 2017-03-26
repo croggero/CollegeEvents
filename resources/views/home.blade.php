@@ -29,20 +29,22 @@
                             <div class="col-md-2" style="display:inline-block;">
                                 @if ($rso->admin_id == Auth::id())
                                 <form class="form-horizontal" role="form" method="POST" action="rsojoined">
-                                    <input id="name" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
+                                    <input id="id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
                                     <button type="submit" class="btn btn-default">Create Event</button>
-                                <form>
+                                </form>
                                 @endif
                             </div>
                             <div class="col-md-2" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="rsojoined">
-                                    <input id="name" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
+                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                    {{ csrf_field() }}
+                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
                                     <button type="submit" class="btn btn-danger">Leave</button>
-                                <form>
+                                </form>
                             </div>
                         </div>
                         <br /><br />
                     @endforeach
+                    
                     </div>
                     @endif
                     <br>
