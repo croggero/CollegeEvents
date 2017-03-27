@@ -7,6 +7,7 @@ use App\Uni;
 use App\User;
 use App\Rso;
 use App\User_rso;
+use App\Categorie;
 use DB;
 use Auth;
 
@@ -52,6 +53,15 @@ class HomeController extends Controller
         DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
 
         return redirect()->route('login');
+    }
+    public function createEvent() {
+
+        $data = $_POST;
+        //DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
+        $cats = DB::select(DB::raw("SELECT *
+                            FROM categories as c;"));
+
+        return view('createevent', compact('data', 'cats'));
     }
 
 }

@@ -28,7 +28,8 @@
                             </div>
                             <div class="col-md-2" style="display:inline-block;">
                                 @if ($rso->admin_id == Auth::id())
-                                <form class="form-horizontal" role="form" method="POST" action="rsojoined">
+                                <form class="form-horizontal" role="form" method="POST" action="createevent">
+                                    {{ csrf_field() }}
                                     <input id="id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
                                     <button type="submit" class="btn btn-default">Create Event</button>
                                 </form>
