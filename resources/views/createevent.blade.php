@@ -37,21 +37,12 @@
                         <div class="form-group">
                             <label for="location" class="col-md-4 control-label">Location</label>
                             <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="latt" class="col-md-4 control-label">Lattitude</label>
-                            <div class="col-md-6">
-                                <input id="latt" type="text" class="form-control" name="latt" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="long" class="col-md-4 control-label">Longitude</label>
-                            <div class="col-md-6">
-                                <input id="long" type="text" class="form-control" name="long" required>
+                                <select id="loc" type="textarea" class="form-control" name="loc" required>
+                                <option value="" data-id="" disabled selected> -- Please Select -- </option>
+                                @foreach ($locs as $loc)
+                                    <option id="loc" value="{{ $loc->id }}">{{$loc->loc_name}}</option>
+                                @endforeach
+                            </select>
                             </div>
                         </div>
 

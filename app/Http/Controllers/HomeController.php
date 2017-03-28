@@ -57,11 +57,15 @@ class HomeController extends Controller
     public function createEvent() {
 
         $data = $_POST;
-        //DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
         $cats = DB::select(DB::raw("SELECT *
                             FROM categories as c;"));
+        
+        $locs = DB::select(DB::raw("SELECT DISTINCT(locations.id), locations.loc_name
+                                FROM locations INNER JOIN (users INNER JOIN unis ON users.uni_id = unis.id) 
+                                ON locations.uni_id = unis.id
+                                WHERE users.id = ". Auth::id() .";"));
 
-        return view('createevent', compact('data', 'cats'));
+        return view('createevent', compact('data', 'cats', 'locs'));
     }
 
 }

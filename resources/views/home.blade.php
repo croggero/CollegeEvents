@@ -52,6 +52,9 @@
                     <div class="col-md-8 col-md-offset-2" style="display:block;">
                         <a class="btn btn-default" href="/joinrso">Join a RSO</a>
                         <a class="btn btn-default" href="/startrso">Start a RSO</a>
+                        @if ($rso->admin_id == Auth::id())
+                        <a class="btn btn-default" href="/createloc">Create University Location</a>
+                        @endif
                     </div>
                 </div>
             </div>
