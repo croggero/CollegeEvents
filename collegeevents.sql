@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2017 at 11:55 PM
+-- Generation Time: Mar 29, 2017 at 01:21 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -46,25 +46,28 @@ INSERT INTO `categories` (`id`, `cat_name`) VALUES
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
   `location_id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
   `cat_id` int(11) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `img` varchar(255) DEFAULT NULL,
   `phone` varchar(10) NOT NULL,
   `email` varchar(75) NOT NULL,
   `rso_id` int(11) DEFAULT NULL,
-  `permission` tinyint(4) NOT NULL
+  `permission` tinyint(4) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `time`, `date`, `location_id`, `name`, `cat_id`, `description`, `img`, `phone`, `email`, `rso_id`, `permission`) VALUES
-(1, '12:00:00', '2017-03-30', 1, 'Beginners Basket Weaving Class', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '/images/spiritsplash.jpg', '555555555', 'baskets@ucf.edu', 9, 3);
+INSERT INTO `events` (`id`, `name`, `description`, `time`, `date`, `location_id`, `cat_id`, `img`, `phone`, `email`, `rso_id`, `permission`, `created_at`, `updated_at`) VALUES
+(1, 'Beginners Basket Weaving Class', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '12:00:00', '2017-03-30', 1, 1, '/images/spiritsplash.jpg', '555555555', 'baskets@ucf.edu', 9, 3, NULL, NULL),
+(2, 'test', 'Lorem Ispum', '14:30:00', '2017-05-06', 1, 1, NULL, '2396914659', 'test@test.com', 9, 2, '2017-03-29 03:14:11', '2017-03-29 03:14:11');
 
 -- --------------------------------------------------------
 
@@ -86,7 +89,8 @@ CREATE TABLE `locations` (
 
 INSERT INTO `locations` (`id`, `loc_name`, `latt`, `long`, `uni_id`) VALUES
 (1, 'Memory Mall', 28.5798, -81.2114, 1),
-(3, 'HEC Room 101', 28.6002, -81.1987, 1);
+(3, 'HEC Room 101', 28.6002, -81.1987, 1),
+(4, 'CFE Arena', 28.6002, -81.1987, 1);
 
 -- --------------------------------------------------------
 
@@ -307,12 +311,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
