@@ -36,11 +36,19 @@
                                 @endif
                             </div>
                             <div class="col-md-2" style="display:inline-block;">
+                                @if ($rso->admin_id == Auth::id())
                                 <form class="form-horizontal" role="form" method="POST" action="leaveRso">
                                     {{ csrf_field() }}
                                     <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
-                                    <button type="submit" class="btn btn-danger">Leave</button>
+                                    <button type="submit" class="btn btn-danger">Delete RSO</button>
                                 </form>
+                                @else
+                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                    {{ csrf_field() }}
+                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-danger">Leave RSO</button>
+                                </form>
+                                @endif
                             </div>
                         </div>
                         <br /><br />

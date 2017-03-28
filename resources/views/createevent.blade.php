@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Event</div>
                 <div class="panel-body">
-                    <form id="createevent" class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
+                    <form id="createevent" class="form-horizontal" role="form" method="POST" action="createevent">
                         {{ csrf_field() }}
 
                         <div class="form-group">
