@@ -14,6 +14,7 @@
                         @endif
                     @endforeach
                     <h3>Your RSOs</h3>
+                    @if (!empty($rsos))
                     @if (count($rsos) <= 0)
                     <p>You are not a part of any RSOs</p>
                     @else
@@ -56,12 +57,15 @@
                     
                     </div>
                     @endif
+                    @endif
                     <br>
                     <div class="col-md-8 col-md-offset-2" style="display:block;">
                         <a class="btn btn-default" href="/joinrso">Join a RSO</a>
                         <a class="btn btn-default" href="/startrso">Start a RSO</a>
-                        @if ($rso->admin_id == Auth::id())
+                        @if (!empty($rsos))
+                        @if ($uni->superadmin_id == Auth::id())
                         <a class="btn btn-default" href="/createloc">Create University Location</a>
+                        @endif
                         @endif
                     </div>
                 </div>

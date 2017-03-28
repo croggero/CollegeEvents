@@ -19,6 +19,13 @@ function admSelectCheck(obj)
         document.getElementById("superAdminCheck").style.display = "none";
     }
 }
+
+function emailDomainCheck(obj)
+{
+    var email = obj
+    var domain = email.replace(/.*@/, "");
+    console.log(domain);
+}
 </script>
 <div class="container">
     <div class="row">
@@ -47,7 +54,7 @@ function admSelectCheck(obj)
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" onchange="emailDomainCheck(value)" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">

@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label for="contactphone" class="col-md-4 control-label">Contact Phone<br><small>(xxx-xxx-xxxx)</small></label>
                             <div class="col-md-6">
-                                <input id="contactphone" type="tel" pattern="^\d{4}-\d{3}-\d{4}$" placeholder="xxx-xxx-xxxx" class="form-control" name="contactphone" required>
+                                <input id="contactphone" type="tel" pattern="" placeholder="xxx-xxx-xxxx" class="form-control" name="contactphone" required>
                             </div>
                         </div>
 

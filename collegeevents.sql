@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2017 at 06:01 PM
+-- Generation Time: Mar 28, 2017 at 11:55 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -144,7 +144,8 @@ INSERT INTO `rsos` (`id`, `name`, `active`, `admin_id`, `uni_id`) VALUES
 (7, 'Basketball', 0, 36, 1),
 (8, 'golf', 0, 38, 3),
 (9, 'Basket Weaving', 0, 36, 1),
-(10, 'Biking', 0, 10, 1);
+(10, 'Biking', 0, 10, 1),
+(11, 'Dancing', 0, 50, 4);
 
 -- --------------------------------------------------------
 
@@ -170,7 +171,7 @@ INSERT INTO `unis` (`id`, `name`, `initials`, `location`, `num_student`, `supera
 (1, 'University of Central Florida', 'UCF', 'Orlando', 65000, 36, '2017-03-26 03:23:38'),
 (2, 'Florida State University', 'FSU', 'Tallhasee', 40000, NULL, '2017-03-26 03:18:01'),
 (3, 'University of Florida', 'UF', 'Gainsville', 50000, 38, '2017-03-26 08:51:30'),
-(4, 'University of Tampa', 'UT', 'Tampa', 15000, NULL, NULL);
+(4, 'University of Tampa', 'UT', 'Tampa', 15000, NULL, '2017-03-29 01:26:25');
 
 -- --------------------------------------------------------
 
@@ -186,20 +187,20 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `permission_id` tinyint(11) NOT NULL DEFAULT '1'
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`, `permission_id`) VALUES
-(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'ZlCqbQhrkmynNQNKOD4OabzxioYOojSUlEuriMBdEGfR5FarfmpiQx8rKctF', '2017-03-26 01:12:16', '2017-03-26 01:12:16', 1),
-(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'FdcGhO3lAGAiAhe7ghv8BAXhXXbSQM2uvAXwxHGzxephzZBE0QjHVLCzmBTK', '2017-03-26 03:23:38', '2017-03-26 03:23:38', 1),
-(37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'wUvPuzZmNmPoZOVBtmhYTnw3ob9UGruuoqYb1U2PV92OdG7eYqLmeACVU7s8', '2017-03-26 03:30:01', '2017-03-26 03:30:01', 1),
-(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'bpZcPxWLn6r4QquXCfhtAL6EH29x29MZCICficpYXs7a5Jy5wPyP4j570Xok', '2017-03-26 08:51:30', '2017-03-26 08:51:30', 1),
-(40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27', 1);
+INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'ZlCqbQhrkmynNQNKOD4OabzxioYOojSUlEuriMBdEGfR5FarfmpiQx8rKctF', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
+(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'cjFKsKeFljEZ2wwEkRXwKnlKEMTWIuPZG6WWR3sJdINBilcncZFQbRws9xYt', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
+(37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'wUvPuzZmNmPoZOVBtmhYTnw3ob9UGruuoqYb1U2PV92OdG7eYqLmeACVU7s8', '2017-03-26 03:30:01', '2017-03-26 03:30:01'),
+(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'bpZcPxWLn6r4QquXCfhtAL6EH29x29MZCICficpYXs7a5Jy5wPyP4j570Xok', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
+(40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27'),
+(50, 'Mr. Smith', 'smith@ut.edu', 4, '$2y$10$gN3wDsCWUV3X1StruhenCOygaBI5xWU.keF2oiRzujApGNMyan/Zm', NULL, '2017-03-29 01:47:11', '2017-03-29 01:47:11');
 
 -- --------------------------------------------------------
 
@@ -223,7 +224,8 @@ INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
 (10, 9, '2017-03-27 03:49:50', '2017-03-27 03:49:50'),
 (36, 5, '2017-03-27 01:15:21', '2017-03-27 01:15:21'),
 (36, 9, '2017-03-27 03:58:49', '2017-03-27 03:58:49'),
-(36, 10, '2017-03-28 09:28:51', '2017-03-28 09:28:51');
+(36, 10, '2017-03-28 09:28:51', '2017-03-28 09:28:51'),
+(50, 11, '2017-03-29 01:47:50', '2017-03-29 01:47:50');
 
 --
 -- Indexes for dumped tables
@@ -283,8 +285,7 @@ ALTER TABLE `unis`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_uni_fk` (`uni_id`),
-  ADD KEY `user_per_id` (`permission_id`);
+  ADD KEY `user_uni_fk` (`uni_id`);
 
 --
 -- Indexes for table `user_rsos`
@@ -326,7 +327,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `rsos`
 --
 ALTER TABLE `rsos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `unis`
 --
@@ -336,7 +337,7 @@ ALTER TABLE `unis`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- Constraints for dumped tables
 --
@@ -372,7 +373,6 @@ ALTER TABLE `unis`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `user_per_id` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `user_uni_fk` FOREIGN KEY (`uni_id`) REFERENCES `unis` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

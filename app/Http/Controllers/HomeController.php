@@ -39,6 +39,8 @@ class HomeController extends Controller
                                     FROM rsos as r, user_rsos as ur
                                     WHERE r.id = ur.rso_id
                                     AND ur.user_id =". $userid));
+        if (empty($rsos))
+            $rsos = array();
         $events = DB::select(DB::raw("SELECT *
                                     FROM ((events INNER JOIN user_rsos ON events.rso_id = user_rsos.rso_id) 
                                     INNER JOIN categories ON events.cat_id = categories.id) 

@@ -20,6 +20,7 @@ Route::post('users', ['uses' => 'UsersController@store']);
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::post('/home', 'HomeController@index');
 Route::get('/joinrso', 'JoinRsoController@index');
 Route::get('/startrso', 'StartRsoController@index');
 Route::get('/createloc', 'CreateLocController@index');
