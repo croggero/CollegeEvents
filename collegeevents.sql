@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 27, 2017 at 12:51 AM
+-- Generation Time: Mar 28, 2017 at 06:01 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -76,15 +76,17 @@ CREATE TABLE `locations` (
   `id` int(11) NOT NULL,
   `loc_name` varchar(255) NOT NULL,
   `latt` float NOT NULL,
-  `long` float NOT NULL
+  `long` float NOT NULL,
+  `uni_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `locations`
 --
 
-INSERT INTO `locations` (`id`, `loc_name`, `latt`, `long`) VALUES
-(1, 'Memory Mall', 28.5798, -81.2114);
+INSERT INTO `locations` (`id`, `loc_name`, `latt`, `long`, `uni_id`) VALUES
+(1, 'Memory Mall', 28.5798, -81.2114, 1),
+(3, 'HEC Room 101', 28.6002, -81.1987, 1);
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,8 @@ INSERT INTO `rsos` (`id`, `name`, `active`, `admin_id`, `uni_id`) VALUES
 (6, 'Computer Programming', 0, 37, 1),
 (7, 'Basketball', 0, 36, 1),
 (8, 'golf', 0, 38, 3),
-(9, 'Basket Weaving', 0, 36, 1);
+(9, 'Basket Weaving', 0, 36, 1),
+(10, 'Biking', 0, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -192,10 +195,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`, `permission_id`) VALUES
-(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'qr6IMLZU4gDyN8SLG5lBL8HCtAUfItjPVC7hmtIJlXqA03Cw2Ln9rUgpxVLw', '2017-03-26 01:12:16', '2017-03-26 01:12:16', 1),
-(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'IP9cMO8H6u5gRS4AANhOjGLHEzUE8gRcEiyxP9JXuf330UDPuzInKWurBtbh', '2017-03-26 03:23:38', '2017-03-26 03:23:38', 1),
+(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'ZlCqbQhrkmynNQNKOD4OabzxioYOojSUlEuriMBdEGfR5FarfmpiQx8rKctF', '2017-03-26 01:12:16', '2017-03-26 01:12:16', 1),
+(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'FdcGhO3lAGAiAhe7ghv8BAXhXXbSQM2uvAXwxHGzxephzZBE0QjHVLCzmBTK', '2017-03-26 03:23:38', '2017-03-26 03:23:38', 1),
 (37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'wUvPuzZmNmPoZOVBtmhYTnw3ob9UGruuoqYb1U2PV92OdG7eYqLmeACVU7s8', '2017-03-26 03:30:01', '2017-03-26 03:30:01', 1),
-(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'woKWtCpPLSPiAJtjAHgDj86w3YCM2Nw403DDZopkqLbIBs6RmgABlhvloxzU', '2017-03-26 08:51:30', '2017-03-26 08:51:30', 1);
+(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'bpZcPxWLn6r4QquXCfhtAL6EH29x29MZCICficpYXs7a5Jy5wPyP4j570Xok', '2017-03-26 08:51:30', '2017-03-26 08:51:30', 1),
+(40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27', 1);
 
 -- --------------------------------------------------------
 
@@ -215,12 +219,11 @@ CREATE TABLE `user_rsos` (
 --
 
 INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
-(10, 5, '2017-03-26 19:55:16', NULL),
-(10, 9, '2017-03-27 02:31:05', '2017-03-27 02:31:05'),
+(10, 7, '2017-03-27 03:53:12', '2017-03-27 03:53:12'),
+(10, 9, '2017-03-27 03:49:50', '2017-03-27 03:49:50'),
 (36, 5, '2017-03-27 01:15:21', '2017-03-27 01:15:21'),
-(36, 6, '2017-03-27 00:55:41', '2017-03-27 00:55:41'),
-(36, 7, '2017-03-27 00:57:30', '2017-03-27 00:57:30'),
-(36, 9, '2017-03-27 01:15:14', '2017-03-27 01:15:14');
+(36, 9, '2017-03-27 03:58:49', '2017-03-27 03:58:49'),
+(36, 10, '2017-03-28 09:28:51', '2017-03-28 09:28:51');
 
 --
 -- Indexes for dumped tables
@@ -245,7 +248,8 @@ ALTER TABLE `events`
 -- Indexes for table `locations`
 --
 ALTER TABLE `locations`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `loc_uni_fk` (`uni_id`);
 
 --
 -- Indexes for table `migrations`
@@ -307,7 +311,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -322,7 +326,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `rsos`
 --
 ALTER TABLE `rsos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `unis`
 --
@@ -332,7 +336,7 @@ ALTER TABLE `unis`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- Constraints for dumped tables
 --
@@ -344,6 +348,12 @@ ALTER TABLE `events`
   ADD CONSTRAINT `cat_id_fk` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `event_rso_fk` FOREIGN KEY (`rso_id`) REFERENCES `rsos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `events_loc_fk` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `locations`
+--
+ALTER TABLE `locations`
+  ADD CONSTRAINT `loc_uni_fk` FOREIGN KEY (`uni_id`) REFERENCES `unis` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rsos`
