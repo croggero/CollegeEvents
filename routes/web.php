@@ -27,5 +27,6 @@ Route::get('/createloc', 'CreateLocController@index');
 Route::post('/rsocreated', 'StartRsoController@create');
 Route::post('/rsojoined', 'JoinRsoController@create');
 Route::post('/leaveRso', 'HomeController@leaverso');
-Route::post('/createevent', 'HomeController@createevent');
+Route::post('/createevent', 'EventController@index');
+Route::post('/eventcreated', 'EventController@create');
 Route::post('/createloc', 'CreateLocController@create');

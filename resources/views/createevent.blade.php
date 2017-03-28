@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Event</div>
                 <div class="panel-body">
-                    <form id="createevent" class="form-horizontal" role="form" method="POST" action="createevent">
+                    <form id="createevent" class="form-horizontal" role="form" method="POST" action="eventcreated">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -70,10 +70,24 @@
                         <div class="form-group">
                             <label for="contactphone" class="col-md-4 control-label">Contact Phone<br><small>(xxx-xxx-xxxx)</small></label>
                             <div class="col-md-6">
-                                <input id="contactphone" type="tel" pattern="" placeholder="xxx-xxx-xxxx" class="form-control" name="contactphone" required>
+                                <input id="contactphone" type="tel" placeholder="xxx-xxx-xxxx" class="form-control" name="contactphone" required>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="location" class="col-md-4 control-label">Event Type</label>
+                            <div class="col-md-6">
+                                <select id="permission" type="textarea" class="form-control" name="permission" required>
+                                    <option value="" data-id="" disabled selected> -- Please Select -- </option>
+                                    <option id="permission" value="1">Public Event</option>
+                                    <option id="permission" value="2">University Event</option>
+                                    <option id="permission" value="3">RSO Event</option>
+                                </select>
+                            </div>
+                        </div>
+
+                       <input id="rso_id" type="hidden" class="form-control" name="rso_id" value="{{ $data['id'] }}" required autofocus>
+                       
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

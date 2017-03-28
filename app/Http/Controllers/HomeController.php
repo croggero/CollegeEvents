@@ -56,18 +56,5 @@ class HomeController extends Controller
 
         return redirect()->route('login');
     }
-    public function createEvent() {
-
-        $data = $_POST;
-        $cats = DB::select(DB::raw("SELECT *
-                            FROM categories as c;"));
-        
-        $locs = DB::select(DB::raw("SELECT DISTINCT(locations.id), locations.loc_name
-                                FROM locations INNER JOIN (users INNER JOIN unis ON users.uni_id = unis.id) 
-                                ON locations.uni_id = unis.id
-                                WHERE users.id = ". Auth::id() .";"));
-
-        return view('createevent', compact('data', 'cats', 'locs'));
-    }
 
 }
