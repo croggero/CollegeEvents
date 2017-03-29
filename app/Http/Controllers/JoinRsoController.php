@@ -13,7 +13,7 @@ class JoinRsoController extends Controller
     public function index()
     {   
         $user = Auth::user();
-        $rsos = DB::select(DB::raw("SELECT r.name, r.id
+        $rsos = DB::select(DB::raw("SELECT DISTINCT r.name, r.id
                         FROM user_rsos as ur RIGHT JOIN rsos as r ON ur.rso_id = r.id
                         WHERE (r.id NOT IN (SELECT user_rsos.rso_id 
                             FROM user_rsos 

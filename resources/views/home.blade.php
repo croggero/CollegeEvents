@@ -81,6 +81,7 @@
                         </div>
                         <div style="text-align:center;">
                             <h2>{{ $event->name }}</h2>
+                            <h5>RSO: {{ $event->rso_name }}</h5>
                             <p>Description: {{ $event->description}}</p>
                             <div class="col-md-6">
                                 <h6>Location: {{ $event->loc_name }}</h6>
@@ -94,11 +95,32 @@
                             <div class="col-md-6">
                                 <h6>Time: {{ $event->time }}</h6>
                             </div> 
-                            <h5>Contact</h5><p>Phone: {{ $event->phone }} &nbsp;  Email:{{ $event->email }}</p>
+                            <h5>Contact Info:</h5><p>Phone: <a href="tel:{{ $event->phone }}">{{ $event->phone }}</a> &nbsp;  Email: {{ $event->email }}</p>
                         </div>
                         <div>
-                            <a class="btn btn-default" href="/joinrso">Add Event to Calendar</a>
-                            <a class="btn btn-default" href="/startrso">View on Maps</a>
+                            <div class="col-md-4" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                    {{ csrf_field() }}
+                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-default">Add Event to Calendar</button>
+                                </form>
+                            </div>
+                            <div class="col-md-4" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                    {{ csrf_field() }}
+                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-default">View on Maps</button>
+                                </form>
+                            </div>
+                            @if ($event->admin_id == Auth::id())
+                            <div class="col-md-4" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                    {{ csrf_field() }}
+                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-danger">Delete Event</button>
+                                </form>
+                            </div>
+                            @endif    
                         </div>
                     </div>
                     @endforeach

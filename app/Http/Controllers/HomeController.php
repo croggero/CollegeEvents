@@ -41,11 +41,11 @@ class HomeController extends Controller
                                     AND ur.user_id =". $userid));
         if (empty($rsos))
             $rsos = array();
-        $events = DB::select(DB::raw("SELECT *
-                                    FROM ((events INNER JOIN user_rsos ON events.rso_id = user_rsos.rso_id) 
+        $events = DB::select(DB::raw("SELECT *, rsos.name as rso_name
+                                    FROM rsos INNER JOIN (((events INNER JOIN user_rsos ON events.rso_id = user_rsos.rso_id) 
                                     INNER JOIN categories ON events.cat_id = categories.id) 
-                                    INNER JOIN locations ON events.location_id = locations.id
-                                    WHERE ((user_rsos.user_id)=". $userid .");"));
+                                    INNER JOIN locations ON events.location_id = locations.id) ON rsos.id = user_rsos.rso_id
+                                    WHERE (((user_rsos.user_id)=" . $userid ."));"));
         return view('home', compact('unis','rsos', 'events'));
     }
     public function leaveRso() {
