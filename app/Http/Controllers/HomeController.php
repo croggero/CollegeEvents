@@ -41,12 +41,14 @@ class HomeController extends Controller
                                     AND ur.user_id =". $userid));
         if (empty($rsos))
             $rsos = array();
-        $events = DB::select(DB::raw("SELECT events.id, events.name, events.date, events.time, events.description, events.img, events.phone, locations.loc_name, events.email, events.permission, categories.cat_name, locations.loc_name, rsos.name as rso_name, rsos.admin_id, unis.name as uni_name
+
+        $events = DB::select(DB::raw("SELECT events.id, events.name, events.date, events.time, events.description, events.img, events.phone, locations.loc_name, events.email, events.permission, categories.cat_name, locations.loc_name, rsos.name as rso_name, rsos.admin_id, rsos.uni_id, unis.name as uni_name
                                     FROM (rsos INNER JOIN (((events INNER JOIN user_rsos ON events.rso_id = user_rsos.rso_id) INNER JOIN categories ON events.cat_id = categories.id) INNER JOIN locations ON events.location_id = locations.id) ON rsos.id = user_rsos.rso_id) INNER JOIN unis ON rsos.uni_id = unis.id
-                                    WHERE (((user_rsos.user_id)=". $userid .")) OR (((events.permission)=1))
-                                    GROUP BY events.id, events.name, events.date, events.time, events.description, events.img, events.phone, locations.loc_name, events.email, events.permission, categories.cat_name, locations.loc_name, rsos.name, events.id, events.Date, rsos.admin_id, unis.name
+                                    WHERE (((user_rsos.user_id)=". $userid .")) OR (((events.permission)=1)) OR (((events.permission)=2))
+                                    GROUP BY events.id, events.name, events.date, events.time, events.description, events.img, events.phone, locations.loc_name, events.email, events.permission, categories.cat_name, locations.loc_name, rsos.name, events.id, events.Date, rsos.admin_id, rsos.uni_id, unis.name
                                     ORDER BY events.Date;
                                     "));
+
         return view('home', compact('unis','rsos', 'events'));
     }
 }

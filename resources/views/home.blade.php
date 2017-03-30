@@ -73,45 +73,48 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Events</div>    
                     @foreach ($events as $event)
+                    @if (($event->permission == 2 and $uni->id == $event->uni_id) or $event->permission == 1 or $event->permission == 3)
                     <div class="panel-body" style="text-align:center;">
-                    <div id="event">
-                        <div style="width: 100%; height:200px; overflow: hidden;">
-                            <img src="{{ $event->img }}" style="width: 100%;">
-                        </div>
-                        <div style="text-align:center;">
-                            <h2>{{ $event->name }}</h2>
-                            <p>Description: {{ $event->description}}</p>
-                            <div class="col-xs-6 col-md-4">
-                                <h5>{{ $event->uni_name }}</h5>
+                        <div id="event">
+                            <div style="width: 100%; height:200px; overflow: hidden;">
+                                <img src="{{ $event->img }}" style="width: 100%;">
                             </div>
-                            <div class="col-xs-6 col-md-4">
-                                <h5>RSO: {{ $event->rso_name }}</h5>
+                            <div style="text-align:center;">
+                                <h2>{{ $event->name }}</h2>
+                                <p>Description: {{ $event->description}}</p>
+                                <div class="row" style="margin: 0px 10px; background-color: rgb(245, 245, 245); border-radius: 2px;">
+                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                        <h5>{{ $event->uni_name }}</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                        <h5>RSO: {{ $event->rso_name }}</h5>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-4">
+                                        <h5>Event Type:
+                                            @if ( $event->permission == 1 )
+                                                Public Event
+                                            @elseif ( $event->permission == 2 )
+                                                University Event
+                                            @elseif ( $event->permission == 3 )
+                                                RSO Event
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Location: {{ $event->loc_name }}</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Category: {{ $event->cat_name }}</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Date: {{ $event->date }}</h6>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Time: {{ $event->time }}</h6>
+                                </div> 
+                                <h5>Contact Info:</h5><p>Phone: <a href="tel:{{ $event->phone }}">{{ $event->phone }}</a> &nbsp;  Email: <a href="mailto:{{ $event->email }}">{{ $event->email }}</a></p>
                             </div>
-                            <div class="col-xs-6 col-md-4">
-                                <h5>Event Type:
-                                    @if ( $event->permission == 1 )
-                                        Public Event
-                                    @elseif ( $event->permission == 2 )
-                                        University Event
-                                    @elseif ( $event->permission == 3 )
-                                        RSO Event
-                                    @endif
-                                </h5>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Location: {{ $event->loc_name }}</h6>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Category: {{ $event->cat_name }}</h6>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Date: {{ $event->date }}</h6>
-                            </div>
-                            <div class="col-md-6">
-                                <h6>Time: {{ $event->time }}</h6>
-                            </div> 
-                            <h5>Contact Info:</h5><p>Phone: <a href="tel:{{ $event->phone }}">{{ $event->phone }}</a> &nbsp;  Email: {{ $event->email }}</p>
-                        </div>
                         <div>
                         @if ($event->admin_id == Auth::id())
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
@@ -161,7 +164,8 @@
                         </div>
                     </div>
                 </div>
-                 @endforeach
+                @endif
+                @endforeach
             </div>
         </div>
     </div>
