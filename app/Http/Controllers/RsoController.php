@@ -58,11 +58,22 @@ class RsoController extends Controller
         return redirect()->route('login');
     }
 
-    public function leaverso() {
+    public function leaveRso() {
 
         $data = $_POST;
         $userid = Auth::id();
         DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
+
+        return redirect()->route('login');
+    }
+
+    public function deleteRso() {
+
+        $data = $_POST;
+        $userid = Auth::id();
+        DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.rso_id = ". $data['id'] .");"));
+        DB::select(DB::raw("DELETE FROM rsos WHERE (rsos.id = ". $data['id'] .");"));
+        DB::select(DB::raw("DELETE FROM events WHERE (events.rso_id = ". $data['id'] .");"));
 
         return redirect()->route('login');
     }

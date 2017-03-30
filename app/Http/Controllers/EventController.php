@@ -62,4 +62,13 @@ class EventController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function delete() {
+
+        $data = $_POST;
+        $userid = Auth::id();
+        DB::select(DB::raw("DELETE FROM events WHERE (events.id = ". $data['id'] .");"));
+
+        return redirect()->route('login');
+    }
 }

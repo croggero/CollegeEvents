@@ -36,8 +36,8 @@ Route::post('/rsocreated', 'RsoController@create');
 Route::get('/joinrso', 'RsoController@join');
 Route::post('/rsojoined', 'RsoController@joined');
 Route::get('/createrso', 'RsoController@start');
-Route::post('/leaveRso', 'RsoController@leaverso');
-
+Route::post('/leaveRso', 'RsoController@leaveRso');
+Route::post('/deleteRso', 'RsoController@deleteRso');
 
 
 

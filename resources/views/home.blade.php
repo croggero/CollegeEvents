@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-2" style="display:inline-block;">
                                 @if ($rso->admin_id == Auth::id())
-                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                <form class="form-horizontal" role="form" method="POST" onsubmit="return confirm('Are you sure you want to delete {{ $rso->name }}?');" action="deleteRso">
                                     {{ csrf_field() }}
                                     <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
                                     <button type="submit" class="btn btn-danger">Delete RSO</button>
@@ -80,8 +80,24 @@
                         </div>
                         <div style="text-align:center;">
                             <h2>{{ $event->name }}</h2>
-                            <h5>RSO: {{ $event->rso_name }}</h5>
                             <p>Description: {{ $event->description}}</p>
+                            <div class="col-xs-6 col-md-4">
+                                <h5>{{ $event->uni_name }}</h5>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <h5>RSO: {{ $event->rso_name }}</h5>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <h5>Event Type:
+                                    @if ( $event->permission == 1 )
+                                        Public Event
+                                    @elseif ( $event->permission == 2 )
+                                        University Event
+                                    @elseif ( $event->permission == 3 )
+                                        RSO Event
+                                    @endif
+                                </h5>
+                            </div>
                             <div class="col-md-6">
                                 <h6>Location: {{ $event->loc_name }}</h6>
                             </div>
@@ -101,28 +117,28 @@
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="leaveRso">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-default">Add to Calendar</button>
                                 </form>
                             </div>
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="leaveRso">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-default">View on Maps</button>
                                 </form>
                             </div>
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="editevent">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->event_id }}" required autofocus>
+                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-primary">Edit Event</button>
                                 </form>
                             </div>
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="deleteevent">
+                                <form class="form-horizontal" role="form" method="POST" onsubmit="return confirm('Are you sure you want to delete {{ $event->name }}?');" action="deleteevent">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->event_id }}" required autofocus>
+                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-danger">Delete Event</button>
                                 </form>
                             </div>
