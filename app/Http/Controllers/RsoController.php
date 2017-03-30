@@ -48,12 +48,24 @@ class RsoController extends Controller
     }
 
     public function joined() {
-        $data = $_POST;
+         $data = $_POST;
         
         User_Rso::create(array(
             'user_id' => Auth::id(),
             'rso_id' => $data['id']
         ));
+
+        $counts = DB::select(DB::raw("SELECT Count(user_rsos.rso_id) AS CountOfrso_id
+                                    FROM user_rsos
+                                    WHERE (((user_rsos.rso_id)=". $data['id'] ."));"));
+        foreach($counts as $count){
+            $cnt = $count;
+            break;
+        }
+
+        if($cnt->CountOfrso_id >= 5){
+            DB::table('rsos')->where('id', $data['id'])->update(['active' => 1]);
+        }
 
         return redirect()->route('login');
     }

@@ -24,11 +24,16 @@
                             <div class="col-md-6" style="display:inline-block;">
                                 {{ $rso->name }}
                                 @if ($rso->admin_id == Auth::id())
-                                 (Admin)
+                                 (Admin) 
+                                @endif
+                                @if ($rso->active == 0)
+                                    is not Active
+                                @else
+                                    is Active
                                 @endif
                             </div>
                             <div class="col-md-2" style="display:inline-block;">
-                                @if ($rso->admin_id == Auth::id())
+                                @if (($rso->admin_id == Auth::id()) and ($rso->active == 1))
                                 <form class="form-horizontal" role="form" method="POST" action="createevent">
                                     {{ csrf_field() }}
                                     <input id="id" type="hidden" class="form-control" name="id" value="{{ $rso->id }}" required autofocus>
