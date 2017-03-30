@@ -41,20 +41,11 @@ class HomeController extends Controller
                                     AND ur.user_id =". $userid));
         if (empty($rsos))
             $rsos = array();
-        $events = DB::select(DB::raw("SELECT *, rsos.name as rso_name
+        $events = DB::select(DB::raw("SELECT *, rsos.name as rso_name, events.id as event_id
                                     FROM rsos INNER JOIN (((events INNER JOIN user_rsos ON events.rso_id = user_rsos.rso_id) 
                                     INNER JOIN categories ON events.cat_id = categories.id) 
                                     INNER JOIN locations ON events.location_id = locations.id) ON rsos.id = user_rsos.rso_id
                                     WHERE (((user_rsos.user_id)=" . $userid ."));"));
         return view('home', compact('unis','rsos', 'events'));
     }
-    public function leaveRso() {
-
-        $data = $_POST;
-        $userid = Auth::id();
-        DB::select(DB::raw("DELETE FROM user_rsos WHERE (user_rsos.user_id = ". $userid ." AND user_rsos.rso_id = ". $data['id'] .");"));
-
-        return redirect()->route('login');
-    }
-
 }

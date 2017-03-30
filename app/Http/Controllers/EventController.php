@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Validator;
+use Response;
+use Redirect;
+use Session;
+use App\Uploads;
 use App\Uni;
 use App\User;
 use App\Rso;
@@ -30,11 +36,11 @@ class EventController extends Controller
         return view('createevent', compact('data', 'cats', 'locs'));
     }
 
-    public function create() {
+    public function create(Request $request) {
 
         $data = $_POST;
 
-        Event::create(array(
+        $event = Event::create(array(
             'name' => $data['eventname'],
             'description' => $data['desc'],
             'cat_id' => $data['cat'],
@@ -46,6 +52,13 @@ class EventController extends Controller
             'rso_id' => $data['rso_id'],
             'permission' => $data['permission'],
         ));
+
+        if(Input::hasFile('image')) {
+                $file = Input::file('image');
+                $file->move('images/event/', $event->id);
+        }
+
+        DB::table('events')->where('id', $event->id)->update(['img'=> "images/event/". $event->id]);
 
         return redirect()->route('login');
     }

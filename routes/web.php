@@ -19,14 +19,27 @@ Route::get('users/create', ['uses' => 'UsersController@create']);
 Route::post('users', ['uses' => 'UsersController@store']);
 Auth::routes();
 
+//Default
 Route::get('/home', 'HomeController@index');
 Route::post('/home', 'HomeController@index');
-Route::get('/joinrso', 'JoinRsoController@index');
-Route::get('/startrso', 'StartRsoController@index');
-Route::get('/createloc', 'CreateLocController@index');
-Route::post('/rsocreated', 'StartRsoController@create');
-Route::post('/rsojoined', 'JoinRsoController@create');
-Route::post('/leaveRso', 'HomeController@leaverso');
+
+//Events
 Route::post('/createevent', 'EventController@index');
 Route::post('/eventcreated', 'EventController@create');
+Route::post('/deleteevent', 'EventController@delete');
+
+Route::get('/createloc', 'CreateLocController@index');
 Route::post('/createloc', 'CreateLocController@create');
+
+//RSOs
+Route::post('/rsocreated', 'RsoController@create');
+Route::get('/joinrso', 'RsoController@join');
+Route::post('/rsojoined', 'RsoController@joined');
+Route::get('/createrso', 'RsoController@start');
+Route::post('/leaveRso', 'RsoController@leaverso');
+
+
+
+
+
+

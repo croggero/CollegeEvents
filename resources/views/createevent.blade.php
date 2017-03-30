@@ -5,7 +5,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Create Event</div>
                 <div class="panel-body">
-                    <form id="createevent" class="form-horizontal" role="form" method="POST" action="eventcreated">
+                    
+                    <form id="createevent" class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="eventcreated">
                         {{ csrf_field() }}
 
                         <div class="form-group">
@@ -57,6 +58,13 @@
                             <label for="date" class="col-md-4 control-label">Date</label>
                             <div class="col-md-6">
                                 <input id="date" type="date" class="form-control" name="date" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image" class="col-md-4 control-label">Event Image</label>
+                            <div class="col-md-6">
+                                {!! Form::file('image') !!}
                             </div>
                         </div>
 
