@@ -178,6 +178,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+
+        Cornford\Googlmapper\MapperServiceProvider::class,
+
     ],
 
     /*
@@ -228,6 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+
+        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
 
     ],
 
