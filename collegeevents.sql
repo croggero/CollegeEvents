@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2017 at 01:21 AM
+-- Generation Time: Mar 31, 2017 at 03:29 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -46,17 +46,18 @@ INSERT INTO `categories` (`id`, `cat_name`) VALUES
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `description` varchar(255) NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
   `location_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `cat_id` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
   `img` varchar(255) DEFAULT NULL,
   `phone` varchar(10) NOT NULL,
   `email` varchar(75) NOT NULL,
   `rso_id` int(11) DEFAULT NULL,
   `permission` tinyint(4) NOT NULL,
+  `approved` tinyint(4) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -65,9 +66,9 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `description`, `time`, `date`, `location_id`, `cat_id`, `img`, `phone`, `email`, `rso_id`, `permission`, `created_at`, `updated_at`) VALUES
-(1, 'Beginners Basket Weaving Class', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '12:00:00', '2017-03-30', 1, 1, '/images/spiritsplash.jpg', '555555555', 'baskets@ucf.edu', 9, 3, NULL, NULL),
-(2, 'test', 'Lorem Ispum', '14:30:00', '2017-05-06', 1, 1, NULL, '2396914659', 'test@test.com', 9, 2, '2017-03-29 03:14:11', '2017-03-29 03:14:11');
+INSERT INTO `events` (`id`, `time`, `date`, `location_id`, `name`, `cat_id`, `description`, `img`, `phone`, `email`, `rso_id`, `permission`, `approved`, `created_at`, `updated_at`) VALUES
+(1, '12:00:00', '2017-03-30', 1, 'Beginners Basket Weaving Class', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '/images/event/1', '555555555', 'baskets@ucf.edu', 14, 1, 1, NULL, NULL),
+(7, '14:30:00', '2017-07-17', 1, 'Advanced Basket Weaving', 1, 'ajsfbadsiujfhbduaf', 'images/event/7', '555555555', 'basket@ucf.edu', 14, 3, 1, '2017-03-31 05:28:00', '2017-03-31 05:28:00');
 
 -- --------------------------------------------------------
 
@@ -89,8 +90,7 @@ CREATE TABLE `locations` (
 
 INSERT INTO `locations` (`id`, `loc_name`, `latt`, `long`, `uni_id`) VALUES
 (1, 'Memory Mall', 28.5798, -81.2114, 1),
-(3, 'HEC Room 101', 28.6002, -81.1987, 1),
-(4, 'CFE Arena', 28.6002, -81.1987, 1);
+(3, 'HEC Room 101', 28.6002, -81.1987, 1);
 
 -- --------------------------------------------------------
 
@@ -143,13 +143,14 @@ CREATE TABLE `rsos` (
 --
 
 INSERT INTO `rsos` (`id`, `name`, `active`, `admin_id`, `uni_id`) VALUES
-(5, 'Testing', 0, 37, 1),
+(5, 'Testing', 0, 36, 1),
 (6, 'Computer Programming', 0, 37, 1),
 (7, 'Basketball', 0, 36, 1),
 (8, 'golf', 0, 38, 3),
-(9, 'Basket Weaving', 0, 36, 1),
 (10, 'Biking', 0, 10, 1),
-(11, 'Dancing', 0, 50, 4);
+(11, 'Dancing', 0, 50, 4),
+(12, 'Surfing', 0, 36, 1),
+(14, 'Basket Weaving', 1, 36, 1);
 
 -- --------------------------------------------------------
 
@@ -199,12 +200,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'ZlCqbQhrkmynNQNKOD4OabzxioYOojSUlEuriMBdEGfR5FarfmpiQx8rKctF', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
-(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'cjFKsKeFljEZ2wwEkRXwKnlKEMTWIuPZG6WWR3sJdINBilcncZFQbRws9xYt', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
-(37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'wUvPuzZmNmPoZOVBtmhYTnw3ob9UGruuoqYb1U2PV92OdG7eYqLmeACVU7s8', '2017-03-26 03:30:01', '2017-03-26 03:30:01'),
-(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'bpZcPxWLn6r4QquXCfhtAL6EH29x29MZCICficpYXs7a5Jy5wPyP4j570Xok', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
+(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'KktQhhU7gCTASIJCKJAxTvH6QqdLJVTwmQ1FJjpSkwXwz0upRcH9n3efJVGa', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
+(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'PP0E7bt6sd4wvLE75FsagJC1grqUJaWHvFU3imPni1S4yy8oc4PZyBqRXmB9', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
+(37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'qqW922sPxaYdYeghvd5nvZ1ahnTggdwJmeNfN1RjGdalijX7jjwIlFEAobRx', '2017-03-26 03:30:01', '2017-03-26 03:30:01'),
+(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'Ai3c6rSmwyObXnqBhmmdlFsNp4qeQl3ttnG4JuhfihQUuXjQoDVLq4D7zsDb', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
 (40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27'),
-(50, 'Mr. Smith', 'smith@ut.edu', 4, '$2y$10$gN3wDsCWUV3X1StruhenCOygaBI5xWU.keF2oiRzujApGNMyan/Zm', NULL, '2017-03-29 01:47:11', '2017-03-29 01:47:11');
+(50, 'Mr. Smith', 'smith@ut.edu', 4, '$2y$10$gN3wDsCWUV3X1StruhenCOygaBI5xWU.keF2oiRzujApGNMyan/Zm', NULL, '2017-03-29 01:47:11', '2017-03-29 01:47:11'),
+(51, 'New User', 'new@ucf.edu', 1, '$2y$10$dCYFhMmwKCQ6ZqyAHrYOwOc5UmK2h7uQjVl0RZZq7hUAZz5Ls6Zgu', 'T3cgzxh03lF9WukKUGHy6nRN6bwTAiee2oFJmWFtkf6ZaWxHXwz2C2CsCtL8', '2017-03-29 21:58:34', '2017-03-29 21:58:34'),
+(52, 'Obama', 'obama@ucf.edu', 1, '$2y$10$dapsxBL/tiRR8aJv1Btyu.qV1g2SuxuSk1B2qLMJgJgsAVq/DIg8W', NULL, '2017-03-31 03:30:53', '2017-03-31 03:30:53');
 
 -- --------------------------------------------------------
 
@@ -225,11 +228,16 @@ CREATE TABLE `user_rsos` (
 
 INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
 (10, 7, '2017-03-27 03:53:12', '2017-03-27 03:53:12'),
-(10, 9, '2017-03-27 03:49:50', '2017-03-27 03:49:50'),
-(36, 5, '2017-03-27 01:15:21', '2017-03-27 01:15:21'),
-(36, 9, '2017-03-27 03:58:49', '2017-03-27 03:58:49'),
-(36, 10, '2017-03-28 09:28:51', '2017-03-28 09:28:51'),
-(50, 11, '2017-03-29 01:47:50', '2017-03-29 01:47:50');
+(10, 10, '2017-03-31 03:27:13', '2017-03-31 03:27:13'),
+(10, 14, '2017-03-31 03:28:25', '2017-03-31 03:28:25'),
+(36, 5, '2017-03-31 01:40:52', '2017-03-31 01:40:52'),
+(36, 6, '2017-03-31 03:42:22', '2017-03-31 03:42:22'),
+(36, 14, '2017-03-31 01:37:05', '2017-03-31 01:37:05'),
+(37, 14, '2017-03-31 03:29:36', '2017-03-31 03:29:36'),
+(50, 11, '2017-03-29 01:47:50', '2017-03-29 01:47:50'),
+(51, 5, '2017-03-29 22:03:39', '2017-03-29 22:03:39'),
+(51, 14, '2017-03-31 03:29:58', '2017-03-31 03:29:58'),
+(52, 14, '2017-03-31 03:30:58', '2017-03-31 03:30:58');
 
 --
 -- Indexes for dumped tables
@@ -311,12 +319,12 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -331,7 +339,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `rsos`
 --
 ALTER TABLE `rsos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `unis`
 --
@@ -341,7 +349,7 @@ ALTER TABLE `unis`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 --
 -- Constraints for dumped tables
 --
