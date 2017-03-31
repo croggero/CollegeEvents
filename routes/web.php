@@ -29,6 +29,7 @@ Route::post('/eventcreated', 'EventController@create');
 Route::post('/deleteevent', 'EventController@delete');
 Route::post('/editevent', 'EventController@edit');
 Route::post('/updateevent', 'EventController@update');
+Route::post('/approveevent', 'EventController@approve');
 
 Route::get('/createloc', 'CreateLocController@index');
 Route::post('/createloc', 'CreateLocController@create');

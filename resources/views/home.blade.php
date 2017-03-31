@@ -20,7 +20,11 @@
                     @else
                     <div class="" style="display:block;">
                     @foreach ($rsos as $rso)
-                        <div>
+                        @if ($rso->active == 1)
+                        <div class="col-md-12" style="margin: 2px 0px; padding: 5px 0px; background-color: rgb(110, 234, 183); border-radius: 2px;">
+                        @else
+                        <div class="col-md-12" style="margin: 2px 0px; padding: 5px 0px; background-color: rgb(236, 221, 221); border-radius: 2px;">
+                        @endif
                             <div class="col-md-6" style="display:inline-block;">
                                 {{ $rso->name }}
                                 @if ($rso->admin_id == Auth::id())
@@ -75,10 +79,29 @@
                     </div>
                 </div>
             </div>
+             @if ($uni->superadmin_id == Auth::id())
+                <div class="panel panel-default">
+                    <div class="panel-heading">Approve Events</div> 
+                    <div class="panel-body" style="text-align:center;">
+                        @foreach ($events as $event)
+                            @if ($event->approved == 0 and $uni->id == $event->uni_id)
+                                <div class="col-md-6" style="display:inline-block;">{{ $event->name }}</div>
+                                <div class="col-md-6" style="display:inline-block;">
+                                    <form class="form-horizontal" role="form" method="POST" action="approveevent">
+                                        {{ csrf_field() }}
+                                        <input id="eventid" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                        <button type="submit" class="btn btn-success">Approve</button>
+                                    </form>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+             @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Events</div>    
                     @foreach ($events as $event)
-                    @if (($event->permission == 2 and $uni->id == $event->uni_id) or $event->permission == 1 or $event->permission == 3)
+                    @if (($event->permission == 2 and $uni->id == $event->uni_id) or ($event->permission == 1 or $event->permission == 3) and ($event->approved == 1))
                     <div class="panel-body" style="text-align:center;">
                         <div id="event">
                             <div style="width: 100%; height:200px; overflow: hidden;">

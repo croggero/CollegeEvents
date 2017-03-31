@@ -136,4 +136,9 @@ class EventController extends Controller
 
         return redirect()->route('login');
     }
+
+    public function approve(){
+        DB::table('events')->where('id', $_POST['id'])->update(['approved' => 1]);
+        return redirect()->route('login');
+    }
 }
