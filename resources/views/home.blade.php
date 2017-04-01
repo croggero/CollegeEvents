@@ -142,6 +142,7 @@
                                     <h6>Time: {{ $event->time }}</h6>
                                 </div> 
                                 <h5>Contact Info:</h5><p>Phone: <a href="tel:{{ $event->phone }}">{{ $event->phone }}</a> &nbsp;  Email: <a href="mailto:{{ $event->email }}">{{ $event->email }}</a></p>
+                                {!! Mapper::render(); !!}
                             </div>
                         <div>
                         @if ($event->admin_id == Auth::id())
@@ -153,9 +154,10 @@
                                 </form>
                             </div>
                             <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                                <form class="form-horizontal" role="form" method="POST" action="viewmap">
                                     {{ csrf_field() }}
-                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <input id="latt" type="hidden" class="form-control" name="latt" value="{{ $event->latt }}" required autofocus>
+                                    <input id="long" type="hidden" class="form-control" name="long" value="{{ $event->long }}" required autofocus>
                                     <button type="submit" class="btn btn-default">View on Maps</button>
                                 </form>
                             </div>

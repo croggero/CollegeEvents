@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
 use Validator;
 use Response;
 use Redirect;
@@ -140,5 +141,11 @@ class EventController extends Controller
     public function approve(){
         DB::table('events')->where('id', $_POST['id'])->update(['approved' => 1]);
         return redirect()->route('login');
+    }
+
+    public function map() {
+        Mapper::map($_POST['latt'], $_POST['latt']);
+
+        return Mapper::render();
     }
 }
