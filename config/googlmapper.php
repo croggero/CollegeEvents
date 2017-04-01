@@ -20,7 +20,7 @@ return array(
     | A Google API key to link Googlmapper to Google's API.
     |
     */
-    'key' => env('GOOGLE_API_KEY', 'AIzaSyCpO9AnLoKleGw3zQToVGa0bsuUTcRQ4iw'),
+    'key' => env('GOOGLE_API_KEY', 'AIzaSyBorqxDcXjUOuSN8pmcIK4lsNMH3D_kW3U'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +40,7 @@ return array(
     | The Language Google API should use required in ISO 639-1 code format.
     |
     */
-    'language' => 'en-gb',
+    'language' => 'en-us',
 
     /*
     |--------------------------------------------------------------------------

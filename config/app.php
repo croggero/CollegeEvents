@@ -180,6 +180,7 @@ return [
 
         willvincent\Rateable\RateableServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
 
     ],
 
@@ -232,7 +233,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
 
-        'Mapper'         => Cornford\Googlmapper\Facades\MapperFacade::class,
+        'Mapper'         => 'Cornford\Googlmapper\Facades\MapperFacade',
+        'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
 
     ],
 

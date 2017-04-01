@@ -144,8 +144,19 @@ class EventController extends Controller
     }
 
     public function map() {
-        Mapper::map($_POST['latt'], $_POST['latt']);
 
-        return Mapper::render();
+        $latt = $_POST['latt'];
+        $long = $_POST['long'];
+
+        Mapper::map($latt, $long,
+            [
+                'zoom' => 18,
+                'markers' => ['title' => 'My Location',
+                            'animation' => 'DROP']
+            ]
+        );
+
+        return '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBorqxDcXjUOuSN8pmcIK4lsNMH3D_kW3U&callback=initMap"
+                type="text/javascript"></script>'. Mapper::render();
     }
 }
