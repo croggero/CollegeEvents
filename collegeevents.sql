@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2017 at 03:29 AM
+-- Generation Time: Apr 03, 2017 at 12:39 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -37,6 +37,29 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`id`, `cat_name`) VALUES
 (1, 'Sports');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `comment` text NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `event_id`, `comment`, `updated_at`, `created_at`) VALUES
+(8, 36, 1, 'Testing', '2017-04-03 02:13:06', '2017-04-03 02:13:06'),
+(9, 36, 1, 'Hello', '2017-04-03 02:13:53', '2017-04-03 02:13:53');
 
 -- --------------------------------------------------------
 
@@ -103,26 +126,6 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permissions`
---
-
-CREATE TABLE `permissions` (
-  `id` tinyint(11) NOT NULL,
-  `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `permissions`
---
-
-INSERT INTO `permissions` (`id`, `name`) VALUES
-(1, 'Student'),
-(2, 'Admin'),
-(3, 'SuperAdmin');
 
 -- --------------------------------------------------------
 
@@ -200,10 +203,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(10, 'Connor Roggero', 'croggero7@gmail.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'KktQhhU7gCTASIJCKJAxTvH6QqdLJVTwmQ1FJjpSkwXwz0upRcH9n3efJVGa', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
-(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'PP0E7bt6sd4wvLE75FsagJC1grqUJaWHvFU3imPni1S4yy8oc4PZyBqRXmB9', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
+(10, 'Connor Roggero', 'connor@ucf.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'KktQhhU7gCTASIJCKJAxTvH6QqdLJVTwmQ1FJjpSkwXwz0upRcH9n3efJVGa', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
+(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'bFQ50BjCa60QqP3HzY30nECJbzIOEmQgobf1njde7idRt0zZLfE98lhHeP7n', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
 (37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'qqW922sPxaYdYeghvd5nvZ1ahnTggdwJmeNfN1RjGdalijX7jjwIlFEAobRx', '2017-03-26 03:30:01', '2017-03-26 03:30:01'),
-(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'Ai3c6rSmwyObXnqBhmmdlFsNp4qeQl3ttnG4JuhfihQUuXjQoDVLq4D7zsDb', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
+(38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'HrceBSxrmjm9Or47DALTAMaagTQXgdpqWk5ReQkzK1vwWRU3QvTfEkODPM6H', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
 (40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27'),
 (50, 'Mr. Smith', 'smith@ut.edu', 4, '$2y$10$gN3wDsCWUV3X1StruhenCOygaBI5xWU.keF2oiRzujApGNMyan/Zm', NULL, '2017-03-29 01:47:11', '2017-03-29 01:47:11'),
 (51, 'New User', 'new@ucf.edu', 1, '$2y$10$dCYFhMmwKCQ6ZqyAHrYOwOc5UmK2h7uQjVl0RZZq7hUAZz5Ls6Zgu', 'T3cgzxh03lF9WukKUGHy6nRN6bwTAiee2oFJmWFtkf6ZaWxHXwz2C2CsCtL8', '2017-03-29 21:58:34', '2017-03-29 21:58:34'),
@@ -231,9 +234,10 @@ INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
 (10, 10, '2017-03-31 03:27:13', '2017-03-31 03:27:13'),
 (10, 14, '2017-03-31 03:28:25', '2017-03-31 03:28:25'),
 (36, 5, '2017-03-31 01:40:52', '2017-03-31 01:40:52'),
-(36, 6, '2017-03-31 03:42:22', '2017-03-31 03:42:22'),
+(36, 6, '2017-04-03 00:41:14', '2017-04-03 00:41:14'),
 (36, 14, '2017-03-31 01:37:05', '2017-03-31 01:37:05'),
 (37, 14, '2017-03-31 03:29:36', '2017-03-31 03:29:36'),
+(38, 8, '2017-04-03 00:44:30', '2017-04-03 00:44:30'),
 (50, 11, '2017-03-29 01:47:50', '2017-03-29 01:47:50'),
 (51, 5, '2017-03-29 22:03:39', '2017-03-29 22:03:39'),
 (51, 14, '2017-03-31 03:29:58', '2017-03-31 03:29:58'),
@@ -248,6 +252,14 @@ INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comment_user_fk` (`user_id`),
+  ADD KEY `comment_event_fk` (`event_id`);
 
 --
 -- Indexes for table `events`
@@ -269,12 +281,6 @@ ALTER TABLE `locations`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -316,6 +322,11 @@ ALTER TABLE `user_rsos`
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -330,11 +341,6 @@ ALTER TABLE `locations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` tinyint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `rsos`
 --
@@ -353,6 +359,13 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comment_event_fk` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `comment_user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `events`
