@@ -153,7 +153,7 @@
                                     <button type="submit" class="btn btn-default">Add to Calendar</button>
                                 </form>
                             </div>
-                            <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
+                            <div class="col-xs-6 .col-sm-3 col-md-2" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="viewmap">
                                     {{ csrf_field() }}
                                     <input id="latt" type="hidden" class="form-control" name="latt" value="{{ $event->latt }}" required autofocus>
@@ -161,14 +161,21 @@
                                     <button type="submit" class="btn btn-default">View on Maps</button>
                                 </form>
                             </div>
-                            <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
+                            <div class="col-xs-6 .col-sm-3 col-md-2" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="viewcomments">
+                                    {{ csrf_field() }}
+                                    <input id="id" type="hidden" class="form-control" name="event_id" value="{{ $event->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-default">Comments</button>
+                                </form>
+                            </div>
+                            <div class="col-xs-6 .col-sm-3 col-md-2" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="editevent">
                                     {{ csrf_field() }}
                                     <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-primary">Edit Event</button>
                                 </form>
                             </div>
-                            <div class="col-xs-6 .col-sm-3 col-md-3" style="display:inline-block;">
+                            <div class="col-xs-6 .col-sm-3 col-md-2" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" onsubmit="return confirm('Are you sure you want to delete {{ $event->name }}?');" action="deleteevent">
                                     {{ csrf_field() }}
                                     <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
@@ -176,18 +183,26 @@
                                 </form>
                             </div>
                             @else
-                            <div class="col-md-6" style="display:inline-block;">
+                            <div class="col-xs-6 .col-sm-6 col-md-6" style="display:inline-block;">
                                 <form class="form-horizontal" role="form" method="POST" action="leaveRso">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-default">Add to Calendar</button>
                                 </form>
                             </div>
-                            <div class="col-md-6" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="leaveRso">
+                            <div class="col-xs-6 .col-sm-6 col-md-6" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="viewmap">
                                     {{ csrf_field() }}
-                                    <input id="rso_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
+                                    <input id="latt" type="hidden" class="form-control" name="latt" value="{{ $event->latt }}" required autofocus>
+                                    <input id="long" type="hidden" class="form-control" name="long" value="{{ $event->long }}" required autofocus>
                                     <button type="submit" class="btn btn-default">View on Maps</button>
+                                </form>
+                            </div>
+                            <div class="col-xs-6 .col-sm-6 col-md-6" style="display:inline-block;">
+                                <form class="form-horizontal" role="form" method="POST" action="viewcomments">
+                                    {{ csrf_field() }}
+                                    <input id="id" type="hidden" class="form-control" name="event_id" value="{{ $event->id }}" required autofocus>
+                                    <button type="submit" class="btn btn-default">Comments</button>
                                 </form>
                             </div>
                             @endif    

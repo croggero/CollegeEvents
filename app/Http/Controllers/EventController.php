@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Cornford\Googlmapper\Facades\MapperFacade as Mapper;
+use Route;
 use Validator;
 use Response;
 use Redirect;
@@ -15,6 +16,7 @@ use App\User;
 use App\Rso;
 use App\User_rso;
 use App\Categorie;
+use App\Comment;
 use App\Event;
 use DB;
 use Auth;
@@ -158,5 +160,24 @@ class EventController extends Controller
 
         return '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBorqxDcXjUOuSN8pmcIK4lsNMH3D_kW3U&callback=initMap"
                 type="text/javascript"></script>'. Mapper::render();
+    }
+
+    public function viewcomments() {
+        $event_id = $_POST['event_id'];
+        $comments = DB::select(DB::raw("SELECT *
+                                    FROM comments
+                                    WHERE comments.event_id = ". $_POST['event_id'] .";"));
+
+        return view('comments', compact('comments', 'event_id'));
+    }
+
+    public function addcomment() {
+        Comment::create(array(
+            'comment' => $_POST['comment'],
+            'event_id' => $_POST['event_id'],
+            'user_id' => Auth::id(),
+        ));
+
+        return;
     }
 }

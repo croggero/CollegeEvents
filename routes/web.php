@@ -31,6 +31,9 @@ Route::post('/editevent', 'EventController@edit');
 Route::post('/updateevent', 'EventController@update');
 Route::post('/approveevent', 'EventController@approve');
 Route::post('/viewmap', 'EventController@map');
+Route::post('/viewcomments', 'EventController@viewcomments');
+Route::post('/addcomment', 'EventController@addcomment');
+
 
 Route::get('/createloc', 'CreateLocController@index');
 Route::post('/createloc', 'CreateLocController@create');
