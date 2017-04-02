@@ -20,4 +20,4 @@ php artisan serve
 
 **EER Diagram**
 
-![EER](CollegeEvents/EER_Diagram.PNG "EER Diagram")
+![EER](Screenshots/EER_Diagram.PNG "EER Diagram")
