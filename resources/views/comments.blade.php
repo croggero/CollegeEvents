@@ -3,20 +3,32 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Comments</div>
+                <div class="panel-heading">Event</div>
                 <div class="panel-body">
-                    @foreach($comments as $comment)
-                        <p>{{ $comment->comment }}</p>
-                    @endforeach
+                @foreach ($events as $event)
+                    <div class="panel-body" style="text-align:center;">
+                        <div id="event">
+                            <div style="text-align:center;">
+                                <h2>{{ $event->name }}</h2>
+                                <p>Description: {{ $event->description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">Add Comment</div>
+                <div class="panel-heading">Comments</div>
                 <div class="panel-body">
+                    @foreach($comments as $comment)
+                        <p><small>{{ $comment->name}}: </small>{{ $comment->comment }}</p>
+                        <hr>
+                    @endforeach
+                    
                     <form id="addcomment" class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="addcomment">
                         {{ csrf_field() }}
                         <div class="form-group">
-                            <label for="comment" class="col-md-4 control-label">Comment</label>
+                            <label for="comment" class="col-md-4 control-label">Add Comment:</label>
                             <div class="col-md-6">
                                 <textarea rows="5" class="form-control" name="comment" form="addcomment"></textarea>
                             </div>

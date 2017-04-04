@@ -153,8 +153,7 @@ class EventController extends Controller
         Mapper::map($latt, $long,
             [
                 'zoom' => 18,
-                'markers' => ['title' => 'My Location',
-                            'animation' => 'DROP']
+                'markers' => ['animation' => 'DROP']
             ]
         );
 
@@ -165,10 +164,14 @@ class EventController extends Controller
     public function viewcomments() {
         $event_id = $_POST['event_id'];
         $comments = DB::select(DB::raw("SELECT *
-                                    FROM comments
+                                    FROM users INNER JOIN comments ON users.id = comments.user_id
                                     WHERE comments.event_id = ". $_POST['event_id'] .";"));
+        $events = DB::select(DB::raw("SELECT events.name, events.description
+                            FROM events
+                            WHERE (((events.id)=". $_POST['event_id'] ."));
+                            "));
 
-        return view('comments', compact('comments', 'event_id'));
+        return view('comments', compact('comments', 'events', 'event_id'));
     }
 
     public function addcomment() {
