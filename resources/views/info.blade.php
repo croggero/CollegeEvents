@@ -9,6 +9,11 @@
                     <div class="panel-body" style="text-align:center;">
                         <div id="event">
                             <div style="text-align:center;">
+                                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBorqxDcXjUOuSN8pmcIK4lsNMH3D_kW3U&callback=initMap"
+                                type="text/javascript"></script> 
+                                <div style="width: 100%; height: 200px;">
+                                    {!! Mapper::render() !!}
+                                </div>
                                 <h2>{{ $event->name }}</h2>
                                 <p>Description: {{ $event->description}}</p>
                             </div>

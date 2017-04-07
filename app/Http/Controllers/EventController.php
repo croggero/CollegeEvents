@@ -18,6 +18,7 @@ use App\User_rso;
 use App\Categorie;
 use App\Comment;
 use App\Event;
+use App\Event_user;
 use DB;
 use Auth;
 
@@ -140,38 +141,44 @@ class EventController extends Controller
         return redirect()->route('login');
     }
 
+    public function joinevent() {
+        Event_user::create(array('event_id' => $_POST['event_id'], 'user_id' => Auth::id()));
+        return redirect()->route('login');
+    }
+    
+    public function leaveevent() {
+        DB::select(DB::raw("DELETE FROM event_users WHERE (event_users.event_id = ". $_POST['event_id'] ." AND event_users.user_id = ". Auth::id() .");"));
+        return redirect()->route('login');
+    }
+
     public function approve(){
         DB::table('events')->where('id', $_POST['id'])->update(['approved' => 1]);
         return redirect()->route('login');
     }
 
-    public function map() {
-
-        $latt = $_POST['latt'];
-        $long = $_POST['long'];
-
-        Mapper::map($latt, $long,
-            [
-                'zoom' => 18,
-                'markers' => ['animation' => 'DROP']
-            ]
-        );
-
-        return '<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBorqxDcXjUOuSN8pmcIK4lsNMH3D_kW3U&callback=initMap"
-                type="text/javascript"></script>'. Mapper::render();
-    }
-
-    public function viewcomments() {
+    public function info() {
         $event_id = $_POST['event_id'];
         $comments = DB::select(DB::raw("SELECT *
                                     FROM users INNER JOIN comments ON users.id = comments.user_id
                                     WHERE comments.event_id = ". $_POST['event_id'] .";"));
-        $events = DB::select(DB::raw("SELECT events.name, events.description
-                            FROM events
-                            WHERE (((events.id)=". $_POST['event_id'] ."));
+        $events = DB::select(DB::raw("SELECT *
+                                FROM events INNER JOIN locations ON events.location_id = locations.id
+                                WHERE (((events.id)=". $event_id ."));
                             "));
 
-        return view('comments', compact('comments', 'events', 'event_id'));
+        foreach($events as $event) {                    
+            $latt = $event->latt;
+            $long = $event->long;
+        }
+
+        Mapper::map($latt, $long,
+            [
+                'zoom' => 16,
+                'markers' => ['animation' => 'DROP']
+            ]
+        );
+
+        return view('info', compact('comments', 'events', 'event_id'));
     }
 
     public function addcomment() {

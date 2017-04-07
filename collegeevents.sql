@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2017 at 12:39 AM
+-- Generation Time: Apr 07, 2017 at 07:53 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -90,8 +90,31 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `time`, `date`, `location_id`, `name`, `cat_id`, `description`, `img`, `phone`, `email`, `rso_id`, `permission`, `approved`, `created_at`, `updated_at`) VALUES
-(1, '12:00:00', '2017-03-30', 1, 'Beginners Basket Weaving Class', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '/images/event/1', '555555555', 'baskets@ucf.edu', 14, 1, 1, NULL, NULL),
-(7, '14:30:00', '2017-07-17', 1, 'Advanced Basket Weaving', 1, 'ajsfbadsiujfhbduaf', 'images/event/7', '555555555', 'basket@ucf.edu', 14, 3, 1, '2017-03-31 05:28:00', '2017-03-31 05:28:00');
+(1, '12:00:00', '2017-04-22', 1, 'Beginners Basket Weaving Class', 1, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis.', '/images/event/1', '555555555', 'baskets@ucf.edu', 14, 1, 1, NULL, NULL),
+(7, '14:30:00', '2018-01-10', 1, 'Advanced Basket Weaving', 1, 'ajsfbadsiujfhbduaf', 'images/event/7', '555555555', 'basket@ucf.edu', 14, 3, 1, '2017-03-31 05:28:00', '2017-03-31 05:28:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_users`
+--
+
+CREATE TABLE `event_users` (
+  `event_id` int(11) NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `event_users`
+--
+
+INSERT INTO `event_users` (`event_id`, `user_id`, `updated_at`, `created_at`) VALUES
+(1, 36, '2017-04-07 09:36:36', '2017-04-07 09:36:36'),
+(1, 37, '2017-04-07 09:52:43', '2017-04-07 09:52:43'),
+(7, 36, '2017-04-07 09:36:39', '2017-04-07 09:36:39'),
+(7, 37, '2017-04-07 09:39:06', '2017-04-07 09:39:06');
 
 -- --------------------------------------------------------
 
@@ -102,8 +125,8 @@ INSERT INTO `events` (`id`, `time`, `date`, `location_id`, `name`, `cat_id`, `de
 CREATE TABLE `locations` (
   `id` int(11) NOT NULL,
   `loc_name` varchar(255) NOT NULL,
-  `latt` float NOT NULL,
-  `long` float NOT NULL,
+  `latt` double NOT NULL,
+  `long` double NOT NULL,
   `uni_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -112,8 +135,8 @@ CREATE TABLE `locations` (
 --
 
 INSERT INTO `locations` (`id`, `loc_name`, `latt`, `long`, `uni_id`) VALUES
-(1, 'Memory Mall', 28.5798, -81.2114, 1),
-(3, 'HEC Room 101', 28.6002, -81.1987, 1);
+(1, 'Memory Mall', 28.5985, -81.2033831, 1),
+(3, 'HEC Room 101', 28.600200653076172, -81.19869995117188, 1);
 
 -- --------------------------------------------------------
 
@@ -204,7 +227,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `uni_id`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (10, 'Connor Roggero', 'connor@ucf.com', 1, '$2y$10$EkDoHGRx5R.sGtJWICEchOTjM3h78z2sy4w4tYsYA7nWY8KQ8ob2m', 'KktQhhU7gCTASIJCKJAxTvH6QqdLJVTwmQ1FJjpSkwXwz0upRcH9n3efJVGa', '2017-03-26 01:12:16', '2017-03-26 01:12:16'),
-(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'bFQ50BjCa60QqP3HzY30nECJbzIOEmQgobf1njde7idRt0zZLfE98lhHeP7n', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
+(36, 'Mickey Mouse', 'test@test.com', 1, '$2y$10$9TALmZiCYuk2pCae7ph/GeZpxKU/b5/cAi4RiF4YgGdNkEWXDVuke', 'o1Ols4WQwq87LeNyZQ9OD3jOijTTOUJpKBcvhVnnInJviesW5OXuimOUxg6o', '2017-03-26 03:23:38', '2017-03-26 03:23:38'),
 (37, 'John', 'John@knights.ucf.edu', 1, '$2y$10$nidDty68EIOOPpd5etb66Orhzw/0PTEa6rpGdc4wXDLsir2zrjXpO', 'qqW922sPxaYdYeghvd5nvZ1ahnTggdwJmeNfN1RjGdalijX7jjwIlFEAobRx', '2017-03-26 03:30:01', '2017-03-26 03:30:01'),
 (38, 'Arnold Palmer', 'arnold@uf.edu', 3, '$2y$10$oJYCqSSNhP0gVbVvxXpNzuqu7fKoxym/juqQ55fQxTBai08VdSFbS', 'HrceBSxrmjm9Or47DALTAMaagTQXgdpqWk5ReQkzK1vwWRU3QvTfEkODPM6H', '2017-03-26 08:51:30', '2017-03-26 08:51:30'),
 (40, 'Frodo', 'frodo@uf.edu', 4, '$2y$10$/Pj01Uc4qcDw786XUAScbOTvX7T9g1oM8cTtZWCbQEjli.r3P6zuW', NULL, '2017-03-27 03:58:27', '2017-03-27 03:58:27'),
@@ -236,7 +259,7 @@ INSERT INTO `user_rsos` (`user_id`, `rso_id`, `updated_at`, `created_at`) VALUES
 (36, 5, '2017-03-31 01:40:52', '2017-03-31 01:40:52'),
 (36, 6, '2017-04-03 00:41:14', '2017-04-03 00:41:14'),
 (36, 14, '2017-03-31 01:37:05', '2017-03-31 01:37:05'),
-(37, 14, '2017-03-31 03:29:36', '2017-03-31 03:29:36'),
+(37, 14, '2017-04-07 09:39:02', '2017-04-07 09:39:02'),
 (38, 8, '2017-04-03 00:44:30', '2017-04-03 00:44:30'),
 (50, 11, '2017-03-29 01:47:50', '2017-03-29 01:47:50'),
 (51, 5, '2017-03-29 22:03:39', '2017-03-29 22:03:39'),
@@ -269,6 +292,13 @@ ALTER TABLE `events`
   ADD KEY `events_loc_fk` (`location_id`),
   ADD KEY `cat_id_fk` (`cat_id`),
   ADD KEY `event_rso_fk` (`rso_id`);
+
+--
+-- Indexes for table `event_users`
+--
+ALTER TABLE `event_users`
+  ADD PRIMARY KEY (`event_id`,`user_id`),
+  ADD KEY `user_fk` (`user_id`);
 
 --
 -- Indexes for table `locations`
@@ -325,7 +355,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `events`
 --
@@ -374,6 +404,13 @@ ALTER TABLE `events`
   ADD CONSTRAINT `cat_id_fk` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `event_rso_fk` FOREIGN KEY (`rso_id`) REFERENCES `rsos` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `events_loc_fk` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Constraints for table `event_users`
+--
+ALTER TABLE `event_users`
+  ADD CONSTRAINT `event_fk` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `locations`

@@ -30,10 +30,10 @@ Route::post('/deleteevent', 'EventController@delete');
 Route::post('/editevent', 'EventController@edit');
 Route::post('/updateevent', 'EventController@update');
 Route::post('/approveevent', 'EventController@approve');
-Route::post('/viewmap', 'EventController@map');
-Route::post('/viewcomments', 'EventController@viewcomments');
+Route::post('/info', 'EventController@info');
 Route::post('/addcomment', 'EventController@addcomment');
-
+Route::post('/joinevent', 'EventController@joinevent');
+Route::post('/leaveevent', 'EventController@leaveevent');
 
 Route::get('/createloc', 'CreateLocController@index');
 Route::post('/createloc', 'CreateLocController@create');
