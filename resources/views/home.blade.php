@@ -175,14 +175,10 @@
                                 </div>
                             @endif
                             <div class="col-xs-6 col-sm-3 col-md-3" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="info">
-                                    {{ csrf_field() }}
-                                    <input id="event_id" type="hidden" class="form-control" name="event_id" value="{{ $event->id }}" required autofocus>
-                                    <button type="submit" class="btn btn-default">More Info</button>
-                                </form>
+                                <a class="btn btn-default" href="/info/{{ $event->id }}">More Info</a>
                             </div>
                             <div class="col-xs-6 col-sm-3 col-md-3" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="editevent">
+                                <form class="form-horizontal" role="form" method="POST" action="editevent/{{ $event->id }}">
                                     {{ csrf_field() }}
                                     <input id="event_id" type="hidden" class="form-control" name="id" value="{{ $event->id }}" required autofocus>
                                     <button type="submit" class="btn btn-primary">Edit</button>

@@ -26,11 +26,10 @@
                 <div class="panel-heading">Comments</div>
                 <div class="panel-body">
                     @foreach($comments as $comment)
-                        <p><small>{{ $comment->name}}: </small>{{ $comment->comment }}</p>
+                        <p><small>{{ $comment->name }}: </small>{{ $comment->comment }}<small style="float: right;">{{ $comment->date }}</small></p>
                         <hr>
                     @endforeach
-                    
-                    <form id="addcomment" class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="addcomment">
+                    <form id="addcomment" class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="addcomment/{{ $event_id }}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="comment" class="col-md-4 control-label">Add Comment:</label>

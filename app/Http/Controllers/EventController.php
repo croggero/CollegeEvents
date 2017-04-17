@@ -156,11 +156,11 @@ class EventController extends Controller
         return redirect()->route('login');
     }
 
-    public function info() {
-        $event_id = $_POST['event_id'];
-        $comments = DB::select(DB::raw("SELECT *
+    public function info($event_id) {
+        
+        $comments = DB::select(DB::raw("SELECT *, DATE_FORMAT(comments.created_at, '%d/%m/%Y') as date
                                     FROM users INNER JOIN comments ON users.id = comments.user_id
-                                    WHERE comments.event_id = ". $_POST['event_id'] .";"));
+                                    WHERE comments.event_id = ". $event_id .";"));
         $events = DB::select(DB::raw("SELECT *
                                 FROM events INNER JOIN locations ON events.location_id = locations.id
                                 WHERE (((events.id)=". $event_id ."));
@@ -181,13 +181,13 @@ class EventController extends Controller
         return view('info', compact('comments', 'events', 'event_id'));
     }
 
-    public function addcomment() {
+    public function addcomment($event_id) {
         Comment::create(array(
             'comment' => $_POST['comment'],
             'event_id' => $_POST['event_id'],
             'user_id' => Auth::id(),
         ));
-
-        return;
+        
+        return redirect()->action('EventController@info', ['event_id' => $event_id]);
     }
 }

@@ -27,11 +27,11 @@ Route::post('/home', 'HomeController@index');
 Route::post('/createevent', 'EventController@index');
 Route::post('/eventcreated', 'EventController@create');
 Route::post('/deleteevent', 'EventController@delete');
-Route::post('/editevent', 'EventController@edit');
+Route::post('/editevent/{event_id}', 'EventController@edit');
 Route::post('/updateevent', 'EventController@update');
 Route::post('/approveevent', 'EventController@approve');
-Route::post('/info', 'EventController@info');
-Route::post('/addcomment', 'EventController@addcomment');
+Route::get('/info/{event_id}', 'EventController@info');
+Route::post('/info/addcomment/{event_id}', 'EventController@addcomment');
 Route::post('/joinevent', 'EventController@joinevent');
 Route::post('/leaveevent', 'EventController@leaveevent');
 
