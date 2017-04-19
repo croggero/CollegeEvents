@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<script>
+<!--<script>
 function admSelectCheck(obj)
 {
     console.log(obj);
@@ -26,7 +26,7 @@ function emailDomainCheck(obj)
     var domain = email.replace(/.*@/, "");
     console.log(domain);
 }
-</script>
+</script>-->
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

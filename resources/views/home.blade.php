@@ -101,7 +101,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Events</div>    
                     @foreach ($events as $event)
-                    @if (($event->permission == 2 and $uni->id == $event->uni_id) or ($event->permission == 1 or $event->permission == 3) and ($event->approved == 1))
+                    @if ((($event->permission == 2 and $uni->id == $event->uni_id) or ($event->permission == 1 or $event->permission == 3)) and ($event->approved == 1))
                     <div class="panel-body" style="text-align:center;">
                         <div id="event">
                             <div style="width: 100%; height:200px; overflow: hidden;">
@@ -216,11 +216,7 @@
                                 </div>
                             @endif
                             <div class="col-xs-6 col-sm-6 col-md-6" style="display:inline-block;">
-                                <form class="form-horizontal" role="form" method="POST" action="info">
-                                    {{ csrf_field() }}
-                                    <input id="event_id" type="hidden" class="form-control" name="event_id" value="{{ $event->id }}" required autofocus>
-                                    <button type="submit" class="btn btn-default">More Info</button>
-                                </form>
+                                <a class="btn btn-default" href="/info/{{ $event->id }}">More Info</a>
                             </div>
                             @endif    
                         </div>

@@ -18,7 +18,7 @@ class Uni extends Model
         if (isset($data['permission'])) {
             $uni = Uni::find($data['uni']);
             $user = DB::table('users')->orderBy('id', 'desc')->first();
-            $uni->superadmin_id = $user->id;
+            DB::table('unis')->where('id', $data['uni'])->update(['superadmin_id' => $user['id']]);
             $uni->save();
         }
         return;
