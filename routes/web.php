@@ -32,7 +32,6 @@ Route::post('/updateevent', 'EventController@update');
 Route::post('/approveevent', 'EventController@approve');
 Route::get('/info/{event_id}', 'EventController@info');
 Route::post('/info/addcomment/{event_id}', 'EventController@addcomment');
-Route::post('/info/delcomment/{event_id}', 'EventController@delcomment');
 Route::post('/joinevent', 'EventController@joinevent');
 Route::post('/leaveevent', 'EventController@leaveevent');
 

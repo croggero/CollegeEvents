@@ -190,13 +190,4 @@ class EventController extends Controller
         
         return redirect()->action('EventController@info', ['event_id' => $event_id]);
     }
-
-    public function delcomment($event_id) {
-
-        $data = $_POST;
-        $userid = Auth::id();
-        DB::select(DB::raw("DELETE FROM comments WHERE (comments.id = ". $data['comment_id'] .");"));
-
-        return redirect()->action('EventController@info', ['event_id' => $event_id]);
-    }
 }

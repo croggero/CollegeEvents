@@ -26,24 +26,8 @@
                 <div class="panel-heading">Comments</div>
                 <div class="panel-body">
                     @foreach($comments as $comment)
-                        <div class="col-md-12">
-                            <div class="col-md-10">
-                                <p><small>{{ $comment->name }}: </small>{{ $comment->comment }}</p>
-                            </div>
-                            <div class="col-md-2">
-                            @if ($comment->user_id == Auth::id())
-                                <form class="form-horizontal" role="form" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?');" action="delcomment/{{ $event_id }}" style="text-align: center;">
-                                    {{ csrf_field() }}
-                                    <input id="comment_id" type="hidden" class="form-control" name="comment_id" value="{{ $comment->id }}" required autofocus>
-                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                </form>
-                            @endif
-                            <small>{{ $comment->date }}</small>
-                        </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
+                        <p><small>{{ $comment->name }}: </small>{{ $comment->comment }}<small style="float: right;">{{ $comment->date }}</small></p>
+                        <hr>
                     @endforeach
                     <form id="addcomment" class="form-horizontal" role="form" method="POST" enctype='multipart/form-data' action="addcomment/{{ $event_id }}">
                         {{ csrf_field() }}
